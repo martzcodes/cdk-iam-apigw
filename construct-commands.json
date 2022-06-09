@@ -1,0 +1,19 @@
+{
+  "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction": {
+    "describe": {
+      "exec": "aws lambda get-function --function-name ${PHYSICAL_RESOURCE_ID}"
+    },
+    "invoke": {
+      "exec": "aws lambda invoke --function-name ${PHYSICAL_RESOURCE_ID} /dev/stdout"
+    },
+    "visit-console": {
+      "open": "https://console.aws.amazon.com/lambda/home?region=${AWS_REGION}#/functions/${URL_ENCODED_PHYSICAL_RESOURCE_ID}?tab=code"
+    },
+    "audit": {
+      "exec": "aws cloudtrail lookup-events --lookup-attributes AttributeKey=ResourceName,AttributeValue=${PHYSICAL_RESOURCE_ID}"
+    },
+    "audit-console": {
+      "open": "https://console.aws.amazon.com/cloudtrail/home?region=${AWS_REGION}#/events?ResourceName=${PHYSICAL_RESOURCE_ID}"
+    }
+  }
+}
